@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Feliz Cumpleaños Amorcito</title>
+
+<style>
+body {
+    margin: 0;
+    background: black;
+    overflow: hidden;
+    font-family: Arial;
+}
+
+/* TEXTO PRINCIPAL */
+#text {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    font-size: 60px;
+    font-weight: bold;
+    transform: translateY(-50%);
+    color: white;
+    z-index: 10;
+    transition: opacity 1s;
+}
+
+/* ELEMENTOS CAYENDO */
+.item {
+    position: absolute;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-50px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0.8;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<div id="text"></div>
+
+<script>
+
+// IMÁGENES 
+const elementos = [
+'<img src="src/img/6.png" width="70" style="border-radius:70px;">',
+'<img src="src/img/4.png" width="70" style="border-radius:70px;">',
+'<img src="src/img/5.png" width="70" style="border-radius:70px;">',
+'<img src="src/img/7.png" width="70" style="border-radius:70px;">',
+'<img src="src/img/8.png" width="70" style="border-radius:70px;">'
+];
+
+// CREAR ELEMENTOS QUE CAEN
+function crearElemento() {
+    const el = document.createElement("div");
+    el.classList.add("item");
+
+    el.innerHTML = elementos[Math.floor(Math.random() * elementos.length)];
+
+    el.style.left = Math.random() * window.innerWidth + "px";
+    el.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+    document.body.appendChild(el);
+
+    setTimeout(() => {
+        el.remove();
+    }, 8000);
+}
+
+// velocidad de creación
+setInterval(crearElemento, 150);
+
+
+// ===== TEXTO (MODIFICA AQUÍ) =====
+const mensajes = [
+'<img src="src/img/uno.jpg" style="width:200px;">',
+'<img src="src/img/doos.png" style="width:300px;">',
+'<img src="src/img/tres.png" style="width:300px;">',
+"",
+"¡Feliz cumpleaños, mi amor ❤️!",
+"",
+"Hoy es un día muy especial,",
+"porque nació la persona que cambió mi vida sin darse cuenta… tú.",
+"",
+"Quiero que sepas que no eres cualquier persona para mí,",
+"eres la persona mas especial para mi.",
+"",
+"El que me hace sentir tranquila,",
+"feliz y querida,",
+"incluso en los días difíciles.",
+"",
+"A veces no sé cómo explicarte todo lo que siento,",
+"pero sí sé que lo que tengo contigo es real,",
+"es bonito",
+"y no lo cambiaría por nada.",
+"",
+"Hoy le pido a la vida que te llene de cosas bonitas,",
+"que cumplas cada uno de tus sueños,",
+"que nunca te falte salud, paz",
+"y motivos para sonreír.",
+"",
+"Deseo que todo lo bueno que eres",
+"regrese a ti multiplicado,",
+"porque te lo mereces más de lo que imaginas.",
+"",
+"Gracias por estar en mi vida,",
+"por ser tú",
+"y por hacerme sentir especial a tu manera.",
+"",
+"Me haces muy feliz ❤️",
+"Te amo muchísimo.",
+"",
+"Y ojalá me sigas permitiendo",
+"estar a tu lado",
+"en muchos cumpleaños más.",
+"",
+"Porque si algo tengo claro…",
+"es que quiero seguir escribiendo mi historia contigo.",
+"",
+"Quiero seguir celebrándote,",
+"cuidándote",
+"y amándote cada día un poquito más.",
+"",
+"Y si pudiera pedir un deseo hoy…",
+"sería seguir siendo parte de tu vida,",
+"mucho, mucho tiempo más ❤️"
+];
+
+let i = 0;
+const textDiv = document.getElementById("text");
+
+function mostrar() {
+    textDiv.style.opacity = 0;
+
+    setTimeout(() => {
+        textDiv.innerHTML = mensajes[i];
+        textDiv.style.opacity = 1;
+        i++;
+
+        if (i < mensajes.length) {
+            setTimeout(mostrar, 2000);
+        }
+    }, 500);
+}
+
+setTimeout(mostrar, 1000);
+
+</script>
+
+</body>
+</html>
