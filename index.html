@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Feliz Cumpleaños Amorcito</title>
 
 <style>
@@ -18,12 +19,20 @@ body {
     top: 50%;
     width: 100%;
     text-align: center;
-    font-size: 60px;
+    font-size: 8vw; /*  responsive */
     font-weight: bold;
     transform: translateY(-50%);
     color: white;
     z-index: 10;
     transition: opacity 1s;
+    padding: 0 20px;
+}
+
+/* IMÁGENES DEL TEXTO */
+#text img {
+    display: block;
+    margin: 0 auto;
+    max-width: 70%;
 }
 
 /* ELEMENTOS CAYENDO */
@@ -51,16 +60,16 @@ body {
 
 <script>
 
-// IMÁGENES 
+//  IMÁGENES QUE CAEN (MEJORADAS)
 const elementos = [
-'<img src="src/img/6.png" width="70" style="border-radius:70px;">',
-'<img src="src/img/4.png" width="70" style="border-radius:70px;">',
-'<img src="src/img/5.png" width="70" style="border-radius:70px;">',
-'<img src="src/img/7.png" width="70" style="border-radius:70px;">',
-'<img src="src/img/8.png" width="70" style="border-radius:70px;">'
+'<img src="src/img/6.png" style="width:60px; border-radius:50%;">',
+'<img src="src/img/4.png" style="width:60px; border-radius:50%;">',
+'<img src="src/img/5.png" style="width:60px; border-radius:50%;">',
+'<img src="src/img/7.png" style="width:60px; border-radius:50%;">',
+'<img src="src/img/8.png" style="width:60px; border-radius:50%;">'
 ];
 
-// CREAR ELEMENTOS QUE CAEN
+// CREAR ELEMENTOS
 function crearElemento() {
     const el = document.createElement("div");
     el.classList.add("item");
@@ -68,24 +77,28 @@ function crearElemento() {
     el.innerHTML = elementos[Math.floor(Math.random() * elementos.length)];
 
     el.style.left = Math.random() * window.innerWidth + "px";
-    el.style.animationDuration = (4 + Math.random() * 4) + "s";
+    el.style.animationDuration = (6 + Math.random() * 6) + "s"; // más lento
 
     document.body.appendChild(el);
 
     setTimeout(() => {
         el.remove();
-    }, 8000);
+    }, 15000); // duran más
 }
 
-// velocidad de creación
-setInterval(crearElemento, 150);
+// 🔥 MÁS ELEMENTOS (pantalla llena)
+setInterval(() => {
+    for (let i = 0; i < 3; i++) {
+        crearElemento();
+    }
+}, 120);
 
 
-// ===== TEXTO (MODIFICA AQUÍ) =====
+// ===== TEXTO =====
 const mensajes = [
-'<img src="src/img/uno.jpg" style="width:200px;">',
-'<img src="src/img/doos.png" style="width:300px;">',
-'<img src="src/img/tres.png" style="width:300px;">',
+'<img src="src/img/uno.jpg">',
+'<img src="src/img/doos.png">',
+'<img src="src/img/tres.png">',
 "",
 "¡Feliz cumpleaños, mi amor ❤️!",
 "",
@@ -93,7 +106,7 @@ const mensajes = [
 "porque nació la persona que cambió mi vida sin darse cuenta… tú.",
 "",
 "Quiero que sepas que no eres cualquier persona para mí,",
-"eres la persona mas especial para mi.",
+"eres la persona más especial para mí.",
 "",
 "El que me hace sentir tranquila,",
 "feliz y querida,",
@@ -148,11 +161,12 @@ function mostrar() {
         i++;
 
         if (i < mensajes.length) {
-            setTimeout(mostrar, 2000);
+            setTimeout(mostrar, 2300); //  mejor ritmo
         }
-    }, 500);
+    }, 400);
 }
 
+//  INICIO
 setTimeout(mostrar, 1000);
 
 </script>
